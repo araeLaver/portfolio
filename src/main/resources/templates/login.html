@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Portfolio Admin</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-card">
+            <h1 style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                관리자 로그인
+            </h1>
+
+            <!-- Error Message -->
+            <div th:if="${param.error}" class="error-message" style="margin-bottom: 1.5rem;">
+                <p>아이디 또는 비밀번호가 잘못되었습니다.</p>
+            </div>
+
+            <!-- Logout Success Message -->
+            <div th:if="${param.logout}"
+                 style="background: rgba(46, 204, 113, 0.1); border: 1px solid rgba(46, 204, 113, 0.3); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; color: #2ecc71;">
+                <p style="margin: 0;">로그아웃되었습니다.</p>
+            </div>
+
+            <!-- Login Form -->
+            <form th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <label for="username">아이디</label>
+                    <input type="text"
+                           id="username"
+                           name="username"
+                           required
+                           autofocus
+                           placeholder="관리자 아이디 입력">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           required
+                           placeholder="비밀번호 입력">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                    로그인
+                </button>
+            </form>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="/" style="color: var(--color-text-muted); font-size: 0.9rem;">
+                    홈으로 돌아가기
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

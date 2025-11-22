@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${project != null ? project.title + ' - Portfolio' : 'Project Details'}">Project Details</title>
+    <meta name="description" th:content="${project != null ? project.description : 'Project details'}">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">DEV PORTFOLIO</a>
+            <ul class="navbar-nav">
+                <li><a href="/">프로젝트</a></li>
+                <li><a href="/admin">관리자</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Detail -->
+    <main>
+        <div th:if="${project}" class="container">
+            <!-- Header -->
+            <div class="project-detail-header">
+                <h1 th:text="${project.title}">프로젝트 제목</h1>
+                <p class="project-description" th:text="${project.description}">
+                    프로젝트 설명
+                </p>
+            </div>
+
+            <!-- Project Meta & Content -->
+            <div class="project-detail-content">
+                <!-- Tech Stack & Links -->
+                <div class="project-detail-meta">
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 1rem; color: var(--color-accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">
+                            Technology Stack
+                        </h3>
+                        <div class="project-stack">
+                            <span th:each="tech : ${project.stack}" class="tech-tag" th:text="${tech}">
+                                Technology
+                            </span>
+                        </div>
+                    </div>
+
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 1rem; color: var(--color-accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">
+                            Project Links
+                        </h3>
+                        <div class="project-links">
+                            <a th:if="${project.gitUrl != null and project.gitUrl != ''}"
+                               th:href="${project.gitUrl}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="btn btn-secondary">
+                                GitHub Repository
+                            </a>
+                            <a th:if="${project.liveUrl != null and project.liveUrl != ''}"
+                               th:href="${project.liveUrl}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="btn btn-primary">
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Markdown Content -->
+                <div class="markdown-content" th:utext="${project.details}">
+                    <!-- Rendered markdown content appears here -->
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div style="text-align: center; margin: 3rem 0;">
+                <a href="/" class="btn btn-back">목록으로 돌아가기</a>
+            </div>
+        </div>
+
+        <!-- Error State -->
+        <div th:unless="${project}" class="container" style="padding: 6rem 0; text-align: center;">
+            <div class="error-message" style="max-width: 600px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">프로젝트를 찾을 수 없습니다</h2>
+                <p style="font-size: 1.125rem; color: var(--color-text-muted); margin-bottom: 2rem;">
+                    요청하신 프로젝트가 존재하지 않거나 삭제되었습니다.
+                </p>
+                <a href="/" class="btn btn-primary">홈으로 돌아가기</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Developer Portfolio. All Rights Reserved.</p>
+            <p>Built with Spring Boot & Modern Web Technologies</p>
+        </div>
+    </footer>
+
+</body>
+</html>
