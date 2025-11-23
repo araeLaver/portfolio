@@ -69,17 +69,13 @@
                         <!-- Project Preview (Visual) -->
                         <div class="project-preview">
                             <div class="project-mockup">
-                                <!-- Project Icon -->
-                                <div class="project-icon">
-                                    <span th:if="${iterStat.index == 0}">⚡</span>
-                                    <span th:if="${iterStat.index == 1}">✈️</span>
-                                    <span th:if="${iterStat.index == 2}">💡</span>
-                                </div>
-                                <!-- Project Number Badge -->
-                                <div class="project-number-badge"
+                                <!-- Project Number -->
+                                <div class="project-large-number"
                                      th:text="${iterStat.count < 10 ? '0' + iterStat.count : iterStat.count}">
                                     01
                                 </div>
+                                <!-- Minimal Line Decoration -->
+                                <div class="project-decoration"></div>
                             </div>
                         </div>
 
