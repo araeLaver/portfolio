@@ -1,0 +1,40 @@
+# Build artifacts
+target/
+!target/*.jar
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+.factorypath
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Logs
+*.log
+logs/
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+
+# Application
+application-local.properties
+
+# Documentation
+README.md
+CONTRIBUTING.md
+*.md
+
+# CI/CD
+.github/
