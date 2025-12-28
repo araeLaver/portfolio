@@ -20,9 +20,14 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        logger.info("Initializing database with featured portfolio projects...");
-        projectRepository.deleteAll();
-        logger.info("Cleared existing data for fresh initialization.");
+        // 데이터가 이미 존재하면 초기화 건너뛰기
+        long existingCount = projectRepository.count();
+        if (existingCount > 0) {
+            logger.info("Database already contains {} projects. Skipping initialization.", existingCount);
+            return;
+        }
+
+        logger.info("No projects found. Initializing database with sample portfolio projects...");
 
         // 1. BEAM - Global Security Messenger
         ProjectEntity beam = new ProjectEntity();
