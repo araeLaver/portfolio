@@ -25,3 +25,6 @@ logs/
 
 # Application
 application-local.properties
+
+# Claude Code
+.claude/
