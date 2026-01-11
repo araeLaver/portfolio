@@ -35,7 +35,7 @@ public class DataInitializer implements CommandLineRunner {
         beam.setTitle("BEAM - 글로벌 보안 메신저");
         beam.setDescription("WebSocket 기반 실시간 메신저. 1:1 채팅, 그룹 채팅(100명), 파일 공유, JWT 인증, End-to-End 암호화 지원.");
         beam.setGitUrl("https://github.com/araeLaver/chat.git");
-        beam.setLiveUrl("https://homeless-elyn-untab-5dcfc664.koyeb.app/");
+        beam.setLiveUrl("https://chat-untab-fddd496d.koyeb.app/");
         beam.setStack(Arrays.asList("Java 17", "Spring Boot 3.2", "WebSocket (STOMP)", "Spring Security", "PostgreSQL", "Docker", "Koyeb"));
         beam.setDetails("# BEAM - Global Security Messenger\n\n## 주요 기능\n\n### 실시간 메시징\n- 1:1 다이렉트 메시지\n- 그룹 채팅 (최대 100명)\n- 타이핑 인디케이터\n- 온라인 상태 표시\n- 읽음 확인\n- 메시지 검색\n\n### 소셜\n- 친구 요청/수락/거절/차단\n- 친구 목록 관리\n- 프로필 및 상태 메시지\n\n### 파일 공유\n- 최대 10MB 파일 업로드\n- 이미지/비디오 썸네일 자동 생성\n- 다양한 파일 형식 지원\n- 다운로드 내역 추적\n\n### 보안\n- JWT 토큰 인증\n- BCrypt 비밀번호 암호화\n- End-to-End 암호화 프레임워크\n- 전화번호 인증\n\n## 기술 스택\n\n### Backend\n- Java 17, Spring Boot 3.2\n- WebSocket (STOMP + SockJS)\n- Spring Data JPA (14개 엔티티)\n- Spring Security\n- PostgreSQL (운영), H2 (개발)\n- HikariCP 커넥션 풀\n\n### Frontend\n- Vanilla JavaScript SPA\n\n### Infrastructure\n- Docker\n- Koyeb/AWS\n\n## 구현 특징\n\n- STOMP over WebSocket 실시간 통신\n- /topic (그룹), /queue (1:1) 엔드포인트 분리\n- 14개 엔티티 간 관계 설계\n- 커넥션 풀링 및 배치 처리");
 
