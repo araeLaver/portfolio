@@ -20,10 +20,11 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // 데이터가 이미 존재하면 초기화 건너뛰기
+        // 기존 데이터가 있으면 URL 업데이트만 수행
         long existingCount = projectRepository.count();
         if (existingCount > 0) {
-            logger.info("Database already contains {} projects. Skipping initialization.", existingCount);
+            logger.info("Database already contains {} projects. Checking for URL updates...", existingCount);
+            updateProjectUrls();
             return;
         }
 
@@ -64,5 +65,17 @@ public class DataInitializer implements CommandLineRunner {
         projectRepository.save(ideaManager);
 
         logger.info("Successfully initialized {} projects.", projectRepository.count());
+    }
+
+    private void updateProjectUrls() {
+        // BEAM 프로젝트 URL 업데이트
+        projectRepository.findById("beam-messenger").ifPresent(beam -> {
+            String newUrl = "https://chat-untab-fddd496d.koyeb.app/";
+            if (!newUrl.equals(beam.getLiveUrl())) {
+                beam.setLiveUrl(newUrl);
+                projectRepository.save(beam);
+                logger.info("Updated BEAM project liveUrl to: {}", newUrl);
+            }
+        });
     }
 }
