@@ -49,7 +49,7 @@ public class ProjectService {
     @Transactional(readOnly = true)
     public List<Project> getProjects() {
         // Stack is EAGER loaded, no need to force initialize
-        return projectRepository.findAll().stream()
+        return projectRepository.findAllByOrderByDisplayOrderAsc().stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }

@@ -29,7 +29,10 @@ public class ProjectEntity {
     
     @Column(columnDefinition = "TEXT")
     private String details;
-    
+
+    @Column(name = "display_order")
+    private Integer displayOrder;
+
     // Default constructor
     public ProjectEntity() {}
     
@@ -42,6 +45,14 @@ public class ProjectEntity {
         this.liveUrl = liveUrl;
         this.stack = stack;
         this.details = details;
+    }
+
+    public Integer getDisplayOrder() {
+        return displayOrder;
+    }
+
+    public void setDisplayOrder(Integer displayOrder) {
+        this.displayOrder = displayOrder;
     }
 
     // Getters and Setters
