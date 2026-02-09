@@ -79,14 +79,14 @@ public class DataInitializer implements CommandLineRunner {
     private ProjectEntity createDevOrchestra() {
         ProjectEntity project = new ProjectEntity();
         project.setId("dev-orchestra");
-        project.setTitle("DevOrchestra - AI 멀티 터미널 역할 분담 프레임워크");
-        project.setDescription("Claude Code 4개 터미널에 Architect/Implementor/Reviewer/DevOps 역할을 분리하여 AI와 체계적으로 협업하는 개발 프레임워크. 파일 기반 비동기 통신으로 컨텍스트 리셋에도 상태가 보존됩니다.");
+        project.setTitle("DevOrchestra - AI 멀티 터미널 개발 보일러플레이트");
+        project.setDescription("Claude Code 4개 터미널에 Architect/Implementor/Reviewer/DevOps 역할을 분리하여 AI와 협업하는 개발 템플릿. 파일 기반 비동기 통신으로 컨텍스트 리셋에도 상태가 보존됩니다.");
         project.setGitUrl("https://github.com/araeLaver/claude-code-multi-terminal.git");
         project.setLiveUrl(null);
         project.setStack(Arrays.asList("Claude Code", "Multi-Agent", "Shell Script", "Git Workflow", "Markdown", "tmux", "DevOps"));
         project.setDetails(
-            "# DevOrchestra - AI 멀티 터미널 역할 분담 프레임워크\n\n"
-            + "Claude Code의 컨텍스트 윈도우 한계를 **설계적으로 해결**하는 멀티 터미널 개발 프레임워크입니다.\n"
+            "# DevOrchestra - AI 멀티 터미널 개발 보일러플레이트\n\n"
+            + "Claude Code의 컨텍스트 윈도우 한계를 **설계적으로 해결**하는 멀티 터미널 개발 템플릿입니다.\n"
             + "하나의 터미널에서 모든 작업을 처리할 때 발생하는 역할 혼재, 컨텍스트 소진, 자기 리뷰 편향 문제를 \n"
             + "4개의 전문화된 터미널로 분리하여 해결합니다.\n\n"
             + "## 핵심 아이디어\n\n"
@@ -145,7 +145,7 @@ public class DataInitializer implements CommandLineRunner {
             + "- T2 Implementor: feat/ (예: feat/TASK-001-user-module)\n"
             + "- T3 Reviewer: test/ (예: test/TASK-001-user-tests)\n"
             + "- T4 DevOps: infra/ (예: infra/docker-setup)\n\n"
-            + "## 이 프레임워크의 가치\n\n"
+            + "## 이 템플릿의 가치\n\n"
             + "- AI의 컨텍스트 윈도우 제약을 **프로세스 설계로 극복**\n"
             + "- 팀 협업의 검증된 패턴을 **AI 환경에 최적화**\n"
             + "- 독립적 리뷰로 **자기 리뷰 편향 제거**\n"
