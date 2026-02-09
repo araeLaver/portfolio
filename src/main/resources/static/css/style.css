@@ -542,6 +542,126 @@ a:hover {
     box-shadow: var(--shadow-sm);
 }
 
+/* Tools & Methodology Section */
+.tools-section {
+    padding: 4rem 0 2rem;
+}
+
+.tools-section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-secondary);
+}
+
+.tools-section-subtitle {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.tool-card {
+    background: var(--color-bg-card);
+    border-radius: 16px;
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+.tool-card:hover {
+    border-color: rgba(168, 85, 247, 0.35);
+    box-shadow: 0 4px 24px rgba(168, 85, 247, 0.1);
+}
+
+.tool-card-accent {
+    height: 3px;
+    background: var(--gradient-secondary);
+}
+
+.tool-card-body {
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.tool-card-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.tool-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(168, 85, 247, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-accent-purple);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+}
+
+.tool-card-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-primary);
+}
+
+.tool-card-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.tool-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tool-tag {
+    padding: 0.3rem 0.7rem;
+    background: rgba(168, 85, 247, 0.08);
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: var(--color-accent-purple);
+    font-weight: 500;
+}
+
+.tool-card-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.tool-card-actions .btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+    .tool-card-body {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem;
+    }
+
+    .tool-card-actions {
+        width: 100%;
+    }
+
+    .tool-card-actions .btn {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
 /* Footer */
 .footer {
     background: var(--color-bg-card);

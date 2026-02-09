@@ -1,5 +1,6 @@
 package com.portfolio.controller;
 
+import com.portfolio.dto.Project;
 import com.portfolio.service.ProjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ProjectController {
@@ -21,7 +25,14 @@ public class ProjectController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("projects", projectService.getProjects());
+        List<Project> all = projectService.getProjects();
+        model.addAttribute("projects", all.stream()
+                .filter(p -> !"dev-orchestra".equals(p.getId()))
+                .collect(Collectors.toList()));
+        all.stream()
+                .filter(p -> "dev-orchestra".equals(p.getId()))
+                .findFirst()
+                .ifPresent(t -> model.addAttribute("tool", t));
         return "index";
     }
 
