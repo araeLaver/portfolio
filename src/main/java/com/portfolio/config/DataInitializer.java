@@ -156,13 +156,24 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void ensureDevOrchestraExists() {
-        if (projectRepository.findById("dev-orchestra").isEmpty()) {
-            logger.info("DevOrchestra project not found. Adding to database...");
-            ProjectEntity devOrchestra = createDevOrchestra();
-            devOrchestra.setDisplayOrder(1);
-            projectRepository.save(devOrchestra);
-            logger.info("Successfully added DevOrchestra project.");
-        }
+        ProjectEntity fresh = createDevOrchestra();
+        fresh.setDisplayOrder(1);
+        projectRepository.findById("dev-orchestra").ifPresentOrElse(existing -> {
+            if (!fresh.getTitle().equals(existing.getTitle())
+                    || !fresh.getDescription().equals(existing.getDescription())
+                    || !fresh.getDetails().equals(existing.getDetails())) {
+                existing.setTitle(fresh.getTitle());
+                existing.setDescription(fresh.getDescription());
+                existing.setDetails(fresh.getDetails());
+                existing.setStack(fresh.getStack());
+                existing.setDisplayOrder(1);
+                projectRepository.save(existing);
+                logger.info("Updated DevOrchestra project data.");
+            }
+        }, () -> {
+            projectRepository.save(fresh);
+            logger.info("Added DevOrchestra project.");
+        });
     }
 
     private void ensureDisplayOrder() {

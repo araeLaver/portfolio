@@ -57,8 +57,39 @@
         </div>
     </header>
 
-    <!-- Projects Section -->
     <main>
+    <!-- Tools & Methodology Section -->
+    <section class="tools-section" th:if="${tool != null}">
+        <div class="container">
+            <h2 class="tools-section-title">Tools & Methodology</h2>
+            <p class="tools-section-subtitle">개발 생산성을 높이기 위해 설계한 보일러플레이트</p>
+
+            <div class="tool-card">
+                <div class="tool-card-accent"></div>
+                <div class="tool-card-body">
+                    <div class="tool-card-content">
+                        <span class="tool-badge">OPEN SOURCE</span>
+                        <h3 class="tool-card-title" th:text="${tool.title}">Tool Title</h3>
+                        <p class="tool-card-desc" th:text="${tool.description}">Tool description</p>
+                        <div class="tool-stack">
+                            <span th:each="tech : ${tool.stack}"
+                                  class="tool-tag"
+                                  th:text="${tech}">Tech</span>
+                        </div>
+                    </div>
+                    <div class="tool-card-actions">
+                        <a th:href="@{'/projects/' + ${tool.id}}" class="btn btn-secondary">자세히 보기</a>
+                        <a th:if="${tool.gitUrl != null and tool.gitUrl != ''}"
+                           th:href="${tool.gitUrl}"
+                           target="_blank"
+                           class="btn btn-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
         <section class="projects-section">
             <div class="container">
                 <h2 class="section-title">Featured Projects</h2>
@@ -139,37 +170,6 @@
             </div>
         </section>
     </main>
-
-    <!-- Tools & Methodology Section -->
-    <section class="tools-section" th:if="${tool != null}">
-        <div class="container">
-            <h2 class="tools-section-title">Tools & Methodology</h2>
-            <p class="tools-section-subtitle">개발 생산성을 높이기 위해 설계한 프레임워크</p>
-
-            <div class="tool-card">
-                <div class="tool-card-accent"></div>
-                <div class="tool-card-body">
-                    <div class="tool-card-content">
-                        <span class="tool-badge">OPEN SOURCE</span>
-                        <h3 class="tool-card-title" th:text="${tool.title}">Tool Title</h3>
-                        <p class="tool-card-desc" th:text="${tool.description}">Tool description</p>
-                        <div class="tool-stack">
-                            <span th:each="tech : ${tool.stack}"
-                                  class="tool-tag"
-                                  th:text="${tech}">Tech</span>
-                        </div>
-                    </div>
-                    <div class="tool-card-actions">
-                        <a th:href="@{'/projects/' + ${tool.id}}" class="btn btn-secondary">자세히 보기</a>
-                        <a th:if="${tool.gitUrl != null and tool.gitUrl != ''}"
-                           th:href="${tool.gitUrl}"
-                           target="_blank"
-                           class="btn btn-link">GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="footer">
