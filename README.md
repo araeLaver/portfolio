@@ -178,7 +178,7 @@ Mac mini로 서비스 이전이 끝난 뒤 아래 순서대로 정리합니다.
 
 상세 실행 항목이 필요하면 다음 문서를 따르세요.
 
-- [KOYEB_OFFBOARDING.md](/Volumes/WorkDrive/Develop/19_portfolio/portfolio/KOYEB_OFFBOARDING.md)
+- [KOYEB_OFFBOARDING.md](KOYEB_OFFBOARDING.md)
 
 ### External address 변경 예시
 
