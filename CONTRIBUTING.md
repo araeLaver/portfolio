@@ -5,7 +5,7 @@
 ## 브랜치 전략
 
 ```
-main          # 운영 환경 (Koyeb 자동 배포)
+main          # 운영 환경 (Mac mini 운영 반영)
   ↑
 develop       # 개발 통합 브랜치
   ↑
@@ -54,7 +54,7 @@ mvn spring-boot:run -Dspring-boot.run.profiles=dev
 # 테스트 확인 후 운영 배포 준비
 # GitHub에서 develop → main PR 생성
 # CI/CD 파이프라인 통과 확인 후 Merge
-# Koyeb 자동 배포 트리거
+# Mac mini 배포 트리거
 ```
 
 ### 4. 긴급 수정 (Hotfix)
@@ -146,7 +146,7 @@ mvn checkstyle:check
 ### main 브랜치 Merge
 1. Build with Maven
 2. Run unit tests
-3. Deploy to Koyeb
+3. Deploy to Mac mini
 4. Health check
 
 ## 로컬 개발 환경
@@ -166,14 +166,19 @@ mvn spring-boot:run
 
 ## 배포 환경
 
-### Koyeb 환경 변수
+### Mac mini 운영 환경 변수
 - `ADMIN_USERNAME`: Admin 계정 아이디
 - `ADMIN_PASSWORD`: Admin 계정 비밀번호 (필수)
 - `DATABASE_URL`: PostgreSQL 연결 문자열
+- `PORTFOLIO_BASE_URL`: 공개 도메인(예: `https://portfolio.example.com`)
+- `BEAM_LIVE_URL`: BEAM 프로젝트 외부 주소
+- `TRAVELMATE_LIVE_URL`: TravelMate 프로젝트 외부 주소
+- `IDEA_MANAGER_LIVE_URL`: Idea Manager 프로젝트 외부 주소
 
-### 자동 배포 트리거
-- `main` 브랜치에 Merge 시 자동 배포
-- Health check: `/actuator/health`
+### 운영 배포 프로세스
+- `main` 브랜치 Merge 후 운영 릴리스 진행
+- 운영 서버에서 `curl -fsS <PUBLIC_DOMAIN>/actuator/health` 확인
+- `PORTFOLIO_APP_DIR=/opt/portfolio`, `.portfolio.env` 기반으로 배포 수행
 - 배포 완료 후 수동 검증 필요
 
 ## 문제 해결

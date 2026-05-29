@@ -25,6 +25,7 @@ logs/
 
 # Application
 application-local.properties
+.portfolio.env
 
 # Claude Code
 .claude/

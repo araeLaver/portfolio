@@ -1,8 +1,9 @@
-name: Deploy to Production
+name: Build and Package for Mac Mini
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -24,13 +25,15 @@ jobs:
     - name: Run tests
       run: mvn test
 
-    - name: Deploy notification
+    - name: Create production artifact
+      if: success()
       run: |
-        echo "Deployment triggered for commit: ${{ github.sha }}"
-        echo "Koyeb will auto-deploy from main branch"
+        mkdir -p artifacts
+        cp target/*.jar artifacts/ || true
 
-    - name: Health check (post-deployment)
+    - name: Deploy target (manual/offline)
+      if: success()
       run: |
-        echo "Waiting for deployment..."
-        sleep 30
-        curl -f https://your-app.koyeb.app/actuator/health || echo "Health check will be available after Koyeb deployment"
+        echo "Koyeb deployment is deprecated for this repository."
+        echo "Deploy mac-mini locally by running:"
+        echo "  ./scripts/deploy-macmini.sh"
