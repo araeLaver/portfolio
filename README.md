@@ -150,6 +150,32 @@ PORTFOLIO_AUTO_LAUNCHD=0 ./scripts/cutover-macmini.sh
 tail -n 120 logs/portfolio.log
 ```
 
+### Koyeb 연결 끊기 (오프보드)
+
+Mac mini로 서비스 이전이 끝난 뒤 아래 순서대로 정리합니다.
+
+1. DNS/트래픽 전환 점검
+   - 최종 공개 주소가 맥미니로 트래픽을 받는지 확인
+   - `curl -fsS https://portfolio.example.com/actuator/health`
+
+2. `.portfolio.env` 영구화
+   - 맥미니 운영 환경변수(`PORTFOLIO_BASE_URL`, `*_LIVE_URL`)를 최종 도메인으로 고정
+   - `PORTFOLIO_AUTO_LAUNCHD=0` 실행은 배포 직후 1회 확인용, 운영 중엔 `1` 유지 또는 launchd 스크립트 직접 관리
+
+3. 기존 Koyeb 리소스 정리
+   - Koyeb 앱/서비스를 중단 또는 삭제
+   - GitHub Actions/Koyeb 연결 Webhook 또는 배포 토큰이 남아있다면 제거
+   - Koyeb가 참조하던 DB 접속 정보/시크릿은 비활성화
+
+4. 운영 모니터링 전환
+   - `launchctl list | grep com.portfolio.macmini`로 재부팅 후 자동 시작 상태 확인
+   - 로그: `tail -f logs/portfolio.log`
+   - 필요 시 DNS TTL을 서서히 낮춘 뒤 변경
+
+5. 안전성 검증
+   - 외부 주소 기반 모든 메뉴/버튼 링크가 정상 응답하는지 확인
+   - 기본 관리자 계정으로 로그인 및 주요 기능 동작 점검
+
 ### External address 변경 예시
 
 1) 라우터 포트포워딩: `tcp 80/443 -> 맥미니` + 도메인 A/AAAA 레코드
