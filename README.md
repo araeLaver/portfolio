@@ -176,6 +176,10 @@ Mac mini로 서비스 이전이 끝난 뒤 아래 순서대로 정리합니다.
    - 외부 주소 기반 모든 메뉴/버튼 링크가 정상 응답하는지 확인
    - 기본 관리자 계정으로 로그인 및 주요 기능 동작 점검
 
+상세 실행 항목이 필요하면 다음 문서를 따르세요.
+
+- [KOYEB_OFFBOARDING.md](/Volumes/WorkDrive/Develop/19_portfolio/portfolio/KOYEB_OFFBOARDING.md)
+
 ### External address 변경 예시
 
 1) 라우터 포트포워딩: `tcp 80/443 -> 맥미니` + 도메인 A/AAAA 레코드
