@@ -112,6 +112,31 @@ export PORTFOLIO_JAVA_BIN=/Library/Java/JavaVirtualMachines/temurin-17.jdk/Conte
 launchctl list | grep com.portfolio.macmini
 ```
 
+### 원클릭 운영 전환
+
+```bash
+cd /opt/portfolio
+cp scripts/portfolio.env.example .portfolio.env
+
+# .portfolio.env에 DATABASE_URL / ADMIN_PASSWORD / PORTFOLIO_BASE_URL 등 채우기
+
+chmod +x scripts/*.sh
+./scripts/cutover-macmini.sh
+```
+
+`cutover-macmini.sh`는 아래를 자동 수행합니다.
+
+- `.portfolio.env` 로드 및 필수 변수 검증
+- `deploy-macmini.sh` 실행 (빌드/재시작)
+- 공개 URL 기준 헬스체크
+- `PORTFOLIO_AUTO_LAUNCHD=1`이면 launchd 등록까지 자동 수행 (기본값: 1)
+
+launchd만 원할 때는 아래와 같이 비활성화할 수 있습니다.
+
+```bash
+PORTFOLIO_AUTO_LAUNCHD=0 ./scripts/cutover-macmini.sh
+```
+
 - Remove launchd service (if needed)
 
 ```bash
@@ -125,7 +150,7 @@ launchctl list | grep com.portfolio.macmini
 tail -n 120 logs/portfolio.log
 ```
 
-### External address (Koyeb 탈거) 예시
+### External address 변경 예시
 
 1) 라우터 포트포워딩: `tcp 80/443 -> 맥미니` + 도메인 A/AAAA 레코드
 
