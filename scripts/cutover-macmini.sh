@@ -3,7 +3,6 @@ set -euo pipefail
 
 BASE_DIR="${PORTFOLIO_APP_DIR:-$(cd "$(dirname "$0")" && pwd)/..}"
 ENV_FILE="${PORTFOLIO_ENV_FILE:-$BASE_DIR/.portfolio.env}"
-AUTO_LAUNCHD="${PORTFOLIO_AUTO_LAUNCHD:-1}"
 
 cd "$BASE_DIR"
 
@@ -17,6 +16,10 @@ set -a
 # shellcheck disable=SC1090
 . "$ENV_FILE"
 set +a
+
+export PORTFOLIO_APP_DIR="${PORTFOLIO_APP_DIR:-$BASE_DIR}"
+export PORTFOLIO_ENV_FILE="${PORTFOLIO_ENV_FILE:-$ENV_FILE}"
+AUTO_LAUNCHD="${PORTFOLIO_AUTO_LAUNCHD:-1}"
 
 if [ -z "${PORTFOLIO_BASE_URL:-}" ]; then
   echo "PORTFOLIO_BASE_URL is required in $ENV_FILE"
