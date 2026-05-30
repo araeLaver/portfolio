@@ -4,9 +4,6 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 APP_DIR="${PORTFOLIO_APP_DIR:-$SCRIPT_DIR/..}"
 ENV_FILE="${PORTFOLIO_ENV_FILE:-$APP_DIR/.portfolio.env}"
-JAR_NAME="${PORTFOLIO_JAR_NAME:-portfolio-app-0.0.1-SNAPSHOT.jar}"
-JAVA_OPTS="${PORTFOLIO_JAVA_OPTS:--XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -Djava.security.egd=file:/dev/./urandom}"
-JAVA_BIN="${PORTFOLIO_JAVA_BIN:-java}"
 
 cd "$APP_DIR"
 
@@ -15,6 +12,17 @@ if [ -f "$ENV_FILE" ]; then
   # shellcheck disable=SC1090
   . "$ENV_FILE"
   set +a
+fi
+
+JAR_NAME="${PORTFOLIO_JAR_NAME:-portfolio-app-0.0.1-SNAPSHOT.jar}"
+JAVA_BIN="${PORTFOLIO_JAVA_BIN:-java}"
+
+if [ -n "${PORTFOLIO_JAVA_OPTS:-}" ]; then
+  JAVA_OPTS="$PORTFOLIO_JAVA_OPTS"
+elif [ "$(uname -s)" = "Darwin" ]; then
+  JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"
+else
+  JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -Djava.security.egd=file:/dev/./urandom"
 fi
 
 if [ "$JAVA_BIN" = "java" ] && [ -n "${JAVA_HOME:-}" ] && [ -x "${JAVA_HOME}/bin/java" ]; then

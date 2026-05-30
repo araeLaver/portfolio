@@ -8,8 +8,6 @@
     <string>{{APP_DIR}}</string>
     <key>ProgramArguments</key>
     <array>
-      <string>/bin/bash</string>
-      <string>-lc</string>
       <string>{{APP_DIR}}/scripts/run-portfolio.sh</string>
     </array>
     <key>RunAtLoad</key>
@@ -23,11 +21,9 @@
     <key>EnvironmentVariables</key>
     <dict>
       <key>PATH</key>
-      <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+      <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
       <key>PORTFOLIO_APP_DIR</key>
       <string>{{APP_DIR}}</string>
-      <key>JAVA_HOME</key>
-      <string>/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home</string>
     </dict>
   </dict>
 </plist>
